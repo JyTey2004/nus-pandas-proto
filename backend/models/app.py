@@ -18,35 +18,43 @@ from pathlib import Path
 from io import StringIO
 import csv
 import cv2
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 # Load the model
 model = XGBClassifier()
 model.load_model('xgboost_model.json')
 
-openai_api_key = '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'
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+
+aws_access_key_id = os.environ.get("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.environ.get("AWS_SECRET_ACCESS_KEY")
 
 # Set your region and AWS credentials
 region = 'ap-southeast-1'
 s3 = boto3.resource(
     's3',
     region_name=region,
-    aws_access_key_id="AKIARRCRBB67WYLQFS75",
-    aws_secret_access_key="J4g9pmaEtaxtD2dtD6PZkvWXCKkUFJdWOiBRccNi"
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
 )
 
 # Initialize the DynamoDB resource (not client)
 dynamodb = boto3.resource(
     'dynamodb',
     region_name=region,
-    aws_access_key_id="AKIARRCRBB67WYLQFS75",
-    aws_secret_access_key="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"
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
 )
 
 cognito = boto3.client(
     'cognito-idp',
     region_name=region,
-    aws_access_key_id="AKIARRCRBB67WYLQFS75",
-    aws_secret_access_key="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"
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
 )    
 
 # Initialize logging
