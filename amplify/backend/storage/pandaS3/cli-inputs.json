@@ -1,0 +1,13 @@
+{
+  "resourceName": "pandaS3",
+  "policyUUID": "fa14a748",
+  "bucketName": "accident-explanation-images",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

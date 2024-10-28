@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Referendas = () => {
+const HGPT = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const Referendas = () => {
     )
 }
 
-export default Referendas
+export default HGPT

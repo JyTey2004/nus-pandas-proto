@@ -12,13 +12,15 @@ const Background = styled.div`
 
 const ChildrenContainer = styled.div`
     display: flex;
-    height: 200vh;
+    height: 100vh;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
 `;
+
+
 
 const Background_1 = ({ children }) => {
     return (

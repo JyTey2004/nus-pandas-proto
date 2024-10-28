@@ -14,11 +14,12 @@ const Container = styled.div`
     position: relative;
     overflow: hidden;
     padding: 10px 20px;
+    min-height: 30px;
 
     p {
         color: white;
         font-size: 18px;
-        font-weight: 600;
+        font-weight: 700;
         margin: 0;
         position: relative;
         z-index: 1;

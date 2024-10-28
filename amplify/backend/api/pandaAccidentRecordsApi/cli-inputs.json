@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "paths": {
+    "/accident-records": {
+      "name": "/accident-records",
+      "lambdaFunction": "pandaAccidentRecordsLambda",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read"
+        ]
+      }
+    }
+  }
+}
