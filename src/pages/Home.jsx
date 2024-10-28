@@ -40,18 +40,18 @@ const Home = () => {
         <Background_1>
             <SectionHeader>
                 <h1>
-                    VAR for Insurancing Autonomous Vehicles
+                    Who are you?
                 </h1>
                 <p>
-                    Vote and Review Autonomous Vehicle Cases and <br></br>decide insurance claims, premiums and policies
+                    Choose your role to receive tailored AV Insurance assistence
                 </p>
                 <div className="home-page-button-container">
                     <MainButton
-                        header="Submit"
+                        header="AV Owner"
                         onClick={() => console.log('Vote')}
                     />
                     <MainButton
-                        header="Vote"
+                        header="Insurance Company"
                         onClick={() => console.log('Review')}
                     />
                 </div>

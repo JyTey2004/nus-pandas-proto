@@ -8,7 +8,7 @@ const Container = styled.div`
     align-items: center;
     background-color: #484b6a;
     border-radius: 15px;
-    height: 20px;
+    height: 50px;
     justify-content: center;
     cursor: pointer;
     position: relative;
