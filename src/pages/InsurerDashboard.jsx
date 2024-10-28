@@ -1,11 +1,11 @@
 import React from 'react'
-import Background_1 from '../components/backgrounds/Background_1'
+import Background1 from '../components/backgrounds/Background1'
 
 const InsurerDashboard = () => {
     return (
-        <Background_1>
+        <Background1>
 
-        </Background_1>
+        </Background1>
     )
 }
 

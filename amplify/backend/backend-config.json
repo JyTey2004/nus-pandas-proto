@@ -13,6 +13,20 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "pandaClaimsDataApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pandaClaimsDataLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -60,6 +74,25 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "pandaClaimsDataLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "pandaClaimsDataDynamo"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -78,10 +111,30 @@
           "resourceName": "pandaAccidentRecordsLambda"
         }
       ]
+    },
+    "AMPLIFY_function_pandaClaimsDataLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pandaClaimsDataLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_pandaClaimsDataLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pandaClaimsDataLambda"
+        }
+      ]
     }
   },
   "storage": {
     "pandaAccidentRecordsDynamo": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "pandaClaimsDataDynamo": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     },

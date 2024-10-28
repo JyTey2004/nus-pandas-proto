@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storagepandaAccidentRecordsDynamoName": {
+    "storagepandaClaimsDataDynamoName": {
       "Type": "String",
-      "Default": "storagepandaAccidentRecordsDynamoName"
+      "Default": "storagepandaClaimsDataDynamoName"
     },
-    "storagepandaAccidentRecordsDynamoArn": {
+    "storagepandaClaimsDataDynamoArn": {
       "Type": "String",
-      "Default": "storagepandaAccidentRecordsDynamoArn"
+      "Default": "storagepandaClaimsDataDynamoArn"
     }
   },
   "Conditions": {
@@ -55,12 +55,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "pandaAccidentRecordsLambda",
+            "pandaClaimsDataLambda",
             {
               "Fn::Join": [
                 "",
                 [
-                  "pandaAccidentRecordsLambda",
+                  "pandaClaimsDataLambda",
                   "-",
                   {
                     "Ref": "env"
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "nuspandasprotoLambdaRole215ede18",
+            "nuspandasprotoLambdaRole5d576f82",
             {
               "Fn::Join": [
                 "",
                 [
-                  "nuspandasprotoLambdaRole215ede18",
+                  "nuspandasprotoLambdaRole5d576f82",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagepandaAccidentRecordsDynamoArn"
+                  "Ref": "storagepandaClaimsDataDynamoArn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagepandaAccidentRecordsDynamoArn"
+                        "Ref": "storagepandaClaimsDataDynamoArn"
                       },
                       "index/*"
                     ]

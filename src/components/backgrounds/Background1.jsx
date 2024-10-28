@@ -22,7 +22,7 @@ const ChildrenContainer = styled.div`
 
 
 
-const Background_1 = ({ children }) => {
+const Background1 = ({ children }) => {
     return (
         <Background>
             <ChildrenContainer>
@@ -32,4 +32,4 @@ const Background_1 = ({ children }) => {
     )
 }
 
-export default Background_1
+export default Background1

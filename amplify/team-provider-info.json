@@ -13,21 +13,27 @@
       "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-nuspandasproto-dev-1b896-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
-      "function": {
-        "pandaAccidentRecordsLambda": {
-          "deploymentBucketName": "amplify-nuspandasproto-dev-1b896-deployment",
-          "s3Key": "amplify-builds/pandaAccidentRecordsLambda-67726133304644313536-build.zip"
-        }
-      },
       "auth": {
         "nuspandasproto": {}
       },
-      "api": {
-        "pandaAccidentRecordsApi": {}
-      },
       "storage": {
         "pandaAccidentRecordsDynamo": {},
-        "pandaS3": {}
+        "pandaS3": {},
+        "pandaClaimsDataDynamo": {}
+      },
+      "function": {
+        "pandaAccidentRecordsLambda": {
+          "deploymentBucketName": "amplify-nuspandasproto-dev-1b896-deployment",
+          "s3Key": "amplify-builds/pandaAccidentRecordsLambda-6a326263674e635a4550-build.zip"
+        },
+        "pandaClaimsDataLambda": {
+          "deploymentBucketName": "amplify-nuspandasproto-dev-1b896-deployment",
+          "s3Key": "amplify-builds/pandaClaimsDataLambda-51336a794a547135772f-build.zip"
+        }
+      },
+      "api": {
+        "pandaAccidentRecordsApi": {},
+        "pandaClaimsDataApi": {}
       }
     }
   }

@@ -100,7 +100,7 @@ const NavigationBar = () => {
 
     useEffect(() => {
         checkUserAuth();
-    }, [])
+    }, [checkUserAuth]);
 
     const handleRoleClick = (role) => {
         if (role === 'insurer') {
@@ -110,14 +110,14 @@ const NavigationBar = () => {
 
     return (
         <div>
-            {user && user['custom:user_role'] !== 'insurer' &&
+            {user && user['custom:user_role'] === 'insurer' &&
                 <Container>
                     <LogoContainer>
                         NUS Pandas
                     </LogoContainer>
                     <LinksContainer>
-                        <a href="/CGPT">CGPT</a>
-                        <a href="/HGPT">HGPT</a>
+                        <a href="/claims">Claims</a>
+                        <a href="/policies">Policies</a>
                     </LinksContainer>
                 </Container>
             }

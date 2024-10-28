@@ -1,17 +1,17 @@
 {
   "version": 1,
   "paths": {
-    "/accidents": {
-      "name": "/accidents",
-      "lambdaFunction": "pandaAccidentRecordsLambda",
+    "/claims": {
+      "name": "/claims",
+      "lambdaFunction": "pandaClaimsDataLambda",
       "permissions": {
         "setting": "protected",
         "auth": [
           "create",
-          "read"
+          "read",
+          "update"
         ],
         "guest": [
-          "create",
           "read"
         ]
       }

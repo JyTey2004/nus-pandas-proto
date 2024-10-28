@@ -4,23 +4,25 @@ import styled from 'styled-components'
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 90vh;
     width: 90vw;
-    padding: 0 5vw 0 5vw;
+    padding: 10vh 5vw 0 5vw;
     text-align: center;
     overflow: hidden; 
 
     h1 {
         font-weight: 700;
         z-index: 2;
+        text-align: left;
     }
 
     p {
         font-size: 22px;
         font-weight: 400;
         z-index: 2;
+        margin-top: 10px;
     }   
 
     .home-page-button-container {
@@ -57,7 +59,7 @@ const LineTwo = styled.div`
 `;
 
 
-const SectionHeader = ({ children }) => {
+const DashboardSection = ({ children }) => {
     return (
         <Container>
             <LineOne />
@@ -67,4 +69,4 @@ const SectionHeader = ({ children }) => {
     )
 }
 
-export default SectionHeader
+export default DashboardSection

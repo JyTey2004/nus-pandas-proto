@@ -4,6 +4,11 @@ export type AmplifyDependentResourcesAttributes = {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
+    },
+    "pandaClaimsDataApi": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
     }
   },
   "auth": {
@@ -24,10 +29,27 @@ export type AmplifyDependentResourcesAttributes = {
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
+    },
+    "pandaClaimsDataLambda": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
     }
   },
   "storage": {
     "pandaAccidentRecordsDynamo": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "SortKeyName": "string",
+      "SortKeyType": "string",
+      "StreamArn": "string"
+    },
+    "pandaClaimsDataDynamo": {
       "Arn": "string",
       "Name": "string",
       "PartitionKeyName": "string",
