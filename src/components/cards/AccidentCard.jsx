@@ -76,10 +76,8 @@ const AccidentCard = ({ vin_number, iot_records, onClick }) => {
 
                     {expandedIndex === index && (
                         <div className="details">
-                            <p><strong>Image Location:</strong> {record.image_location}</p>
                             <p><strong>Accident Class:</strong> {record.accident_class}</p>
                             <p><strong>Timestamp:</strong> {new Date(parseInt(record.timeStamp)).toLocaleString()}</p>
-                            <p><strong>SHAP Values Count:</strong> {record.shap_values.filter(value => value !== 0).length} non-zero values</p>
                         </div>
                     )}
                 </div>

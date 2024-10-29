@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { fetchAuthSession } from 'aws-amplify/auth';
 import axios from 'axios'
 import styled from 'styled-components'
-import DatasetBubble from './DatasetBubble'
+import ReactMarkdown from 'react-markdown';
+
+import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -110,8 +112,8 @@ const SendButton = styled.button.attrs({ className: 'send-button' })`
     display: flex;
     height: 45px;
     width: 45px;
-    background-color: none;
-    color: #000;
+    background-color: black;
+    color: #fff;
     border: none;
     border-radius: 5px;
     margin-left: 10px;
@@ -119,6 +121,20 @@ const SendButton = styled.button.attrs({ className: 'send-button' })`
     justify-content: center;
     align-items: center;
 `
+
+const UploadButton = styled.button.attrs({ className: 'upload-button' })`
+    display: flex;
+    height: 45px;
+    width: 45px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+`;
+
 
 const DotLoader = styled.div.attrs({ className: 'dot-loader' })`
     display: flex;
@@ -195,13 +211,30 @@ const ChatBox = () => {
     const [newMessage, setNewMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [prompts, setPrompts] = useState([
-        ['Walk me through the procedure', 'After an accident'],
+        ['Walk me through the procedure', 'After an accident', 'Help'],
         ['What are the steps to follow', 'When filing a claim'],
     ])
 
     const textareaRef = useRef(null)
     const messagesEndRef = useRef(null)
+    const [selectedImage, setSelectedImage] = useState(null);
 
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                let base64String = reader.result;
+                // Remove the prefix
+                base64String = base64String.replace(/^data:image\/[a-z]+;base64,/, '');
+                setSelectedImage(base64String); // Store the cleaned base64 string in state
+                console.log('Base64 encoded image without prefix:', base64String);
+            };
+
+            reader.readAsDataURL(file); // Convert file to base64
+        }
+    };
 
     useLayoutEffect(() => {
         // Adjusting the textarea height dynamically
@@ -220,8 +253,9 @@ const ChatBox = () => {
 
     const handlePromptMessage = (prompt) => {
         const promptMessage = `${prompt[0]} ${prompt[1]}`
+        const option = prompt[2];
         addMessage(promptMessage, 'You')
-        replyMessage(promptMessage)
+        replyMessage(promptMessage, option)
         setPrompts([])
     }
 
@@ -230,9 +264,17 @@ const ChatBox = () => {
         scrollToBottom()
     }
 
-    const replyMessage = async (userMessage) => {
+    const replyMessage = async (userMessage, option) => {
         if (!user) {
             return;
+        }
+
+        let option_msg = '';
+
+        if (option === 'Help') {
+            option_msg = 'Help'
+        } else {
+            option_msg = 'Claim_Assessment'
         }
 
         setLoading(true)
@@ -243,26 +285,32 @@ const ChatBox = () => {
                 return;
             }
 
+            const vin = user['custom:vin'];
             const token = session.tokens.idToken;
             const payload = {
-                headers: { Authorization: `Bearer ${token}` },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
                 body: {
-                    session_id: Date.now().toString(),
-                    message: userMessage,
+                    option: option_msg,
+                    vin: vin,
+                    collision_description: userMessage,
+                    image: selectedImage,
                 },
             }
 
             const response = await axios.post(
-                'https://d-gpt.cognidex.ai/agent_chat',
+                'https://d-gpt.cognidex.ai/cgpt',
                 payload.body,
                 { headers: payload.headers }
             );
 
             const botReply = response.data;
-            if (botReply.datasets) {
-                addBotReplyWithDatasets(botReply.response, botReply.datasets)
+            if (botReply.country_specific_rules) {
+                addMessage(botReply.country_specific_rules, 'Bot')
+                return;
             } else {
-                addMessage(botReply.response, 'Bot')
+                addMessage(botReply.summary, 'Bot')
             }
         } catch (error) {
             console.error('Error:', error)
@@ -271,22 +319,6 @@ const ChatBox = () => {
         }
     }
 
-    const addBotReplyWithDatasets = (response, datasets) => {
-        const datasetList = datasets.trim().split("\n\n").map(dataset => {
-            const [title, link, description] = dataset.split("\n");
-            return { title, description, link };
-        });
-
-        setMessages(prev => [
-            ...prev,
-            {
-                text: response,
-                user: 'Bot',
-                datasets: datasetList,
-            }
-        ]);
-        scrollToBottom()
-    }
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -312,10 +344,7 @@ const ChatBox = () => {
                             key={index}
                             className={message.user === 'You' ? 'user-message' : 'bot-message'}
                         >
-                            {message.text}
-                            {message.datasets && (
-                                <DatasetBubble datasets={message.datasets} />
-                            )}
+                            <ReactMarkdown>{message.text}</ReactMarkdown>
                         </Message>
                     ))}
                     {loading && (
@@ -342,8 +371,18 @@ const ChatBox = () => {
                         onChange={(e) => setNewMessage(e.target.value)}
                         onKeyDown={handleKeyDown}
                     />
+                    <UploadButton onClick={() => document.getElementById('fileInput').click()}>
+                        <FontAwesomeIcon icon={faPaperclip} color="white" size="2x" />
+                        <input
+                            id="fileInput"
+                            type="file"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageUpload}
+                        />
+                    </UploadButton>
                     <SendButton onClick={handleSendMessage}>
-                        <FontAwesomeIcon icon={faPaperPlane} color='black' size='2x' />
+                        <FontAwesomeIcon icon={faPaperPlane} color='white' size='2x' />
                     </SendButton>
                 </ChatInputContainer>
             </ChatContainer>

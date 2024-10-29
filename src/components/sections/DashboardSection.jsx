@@ -51,6 +51,48 @@ const Container = styled.div`
         }
     }
 
+    .search-container {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+        z-index: 2;
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-button {
+            background-color: #484b6a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    }
+
+    .claim-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        height: auto;
+        z-index: 2;
+        overflow-y: auto;
+
+        ::-webkit-scrollbar {
+            display: none;  
+        }
+        -ms-overflow-style: none;
+
+    }
+
     .dashboard-accident-container {
         display: flex;
         flex-direction: column;

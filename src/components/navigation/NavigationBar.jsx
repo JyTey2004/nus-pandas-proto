@@ -126,9 +126,6 @@ const NavigationBar = () => {
                     <LogoContainer>
                         NUS Pandas
                     </LogoContainer>
-                    <LinksContainer>
-                        <a href="/CGPT">CGPT</a>
-                    </LinksContainer>
                 </Container>
             }
             <AccountContainer>

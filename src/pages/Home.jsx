@@ -130,12 +130,8 @@ const Home = () => {
                     </p>
                     <div className="home-page-button-container">
                         <MainButton
-                            header="Help"
-                            onClick={() => navigate('/hgpt')}
-                        />
-                        <MainButton
-                            header="Claim"
-                            onClick={() => navigate('/hgpt')}
+                            header="Claim-GPT"
+                            onClick={() => navigate('/cgpt')}
                         />
                     </div>
                 </SectionHeader>

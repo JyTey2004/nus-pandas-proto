@@ -15,6 +15,7 @@ const Container = styled.div`
     overflow: hidden;
     padding: 10px 20px;
     min-height: 30px;
+    max-height: 50px;
 
     p {
         color: white;

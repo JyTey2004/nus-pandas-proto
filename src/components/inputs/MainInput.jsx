@@ -12,6 +12,7 @@ const InputContainer = styled.div`
     position: relative;
     overflow: hidden;
     transition: background-color 0.5s ease;
+    z-index: 1;
 
     label {
         color: white;
