@@ -129,7 +129,7 @@ def local_explain(X, explainer, VIN, timestamp, display=False):
         # Upload to S3
         bucket.upload_file('./shap_local_plot.png', f'{VIN}-{timestamp}/shap_local_plot.png')
         
-        return f'{VIN}/shap_local_plot.png'
+        return f'{VIN}-{timestamp}/shap_local_plot.png'
 
 def generate_image_context(image_path, client):
 
@@ -463,6 +463,8 @@ def predict():
         predictions = model.predict(df)
         probabilities = model.predict_proba(df)
         
+        print(f"Predictions: {predictions[0]==1}")
+        
         if predictions[0] == 1:
             risk = risk_level(probabilities[0][1] * 100) if predictions[0] == 1 else 'No Risk'
             
@@ -481,7 +483,6 @@ def predict():
             # Generate image and get location
             image_location = local_explain(df, explainer, data['VIN'], timestamp)
 
-        
             # timestamp in string format
             timestamp = str(timestamp)
 
@@ -508,15 +509,16 @@ def predict():
                     'image_location': image_location
                 }), 200
         else:
-            return jsonify({
-                    'VIN': data['VIN'],
-                    'timeStamp': timestamp,
-                    'accident_class': int(predictions[0]),
-                    'probabilities': 0,  # Keep it as float, round if needed
-                    'risk_level': 'No Risk',
-                    'shap_values': [],
-                    'image_location': ''
-                }), 200
+            return {}, 200
+            # return jsonify({
+            #         'VIN': data['VIN'],
+            #         'timeStamp': timestamp,
+            #         'accident_class': int(predictions[0]),
+            #         'probabilities': 0,  # Keep it as float, round if needed
+            #         'risk_level': 'No Risk',
+            #         'shap_values': [],
+            #         'image_location': ''
+            #     }), 200
 
     except Exception as e:
         logging.error(f"Error in /predict: {e}")

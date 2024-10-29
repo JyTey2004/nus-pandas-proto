@@ -9,6 +9,11 @@ export type AmplifyDependentResourcesAttributes = {
       "ApiId": "string",
       "ApiName": "string",
       "RootUrl": "string"
+    },
+    "pandaPolicyApi": {
+      "ApiId": "string",
+      "ApiName": "string",
+      "RootUrl": "string"
     }
   },
   "auth": {
@@ -36,6 +41,13 @@ export type AmplifyDependentResourcesAttributes = {
       "LambdaExecutionRoleArn": "string",
       "Name": "string",
       "Region": "string"
+    },
+    "pandaPolicyLambda": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
     }
   },
   "storage": {
@@ -57,6 +69,14 @@ export type AmplifyDependentResourcesAttributes = {
       "Region": "string",
       "SortKeyName": "string",
       "SortKeyType": "string",
+      "StreamArn": "string"
+    },
+    "pandaPolicyDynamo": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
       "StreamArn": "string"
     },
     "pandaS3": {

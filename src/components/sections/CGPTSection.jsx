@@ -3,13 +3,13 @@ import styled from 'styled-components'
 
 // Essentially the Hero section
 const Container = styled.div`
-    height: calc(100vh - 130px);
+    height: calc(100vh - 100px);
     width: 90vw;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: calc(10vh + 90px) 5vw 20px 5vw;
+    padding: calc(10vh + 60px) 5vw 20px 5vw;
     gap: 30px;
 
     @media (max-width: 1000px) {
@@ -22,7 +22,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         height: 100%;
-        width: 50vw;
+        width: 88vw;
 
         @media (max-width: 1000px) {
             width: calc(95vw - 20px);

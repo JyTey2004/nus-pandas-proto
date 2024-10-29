@@ -45,5 +45,6 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 
 .venv/
-
+backend/models/.env
 .env
+

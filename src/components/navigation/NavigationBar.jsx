@@ -128,7 +128,6 @@ const NavigationBar = () => {
                     </LogoContainer>
                     <LinksContainer>
                         <a href="/CGPT">CGPT</a>
-                        <a href="/HGPT">HGPT</a>
                     </LinksContainer>
                 </Container>
             }

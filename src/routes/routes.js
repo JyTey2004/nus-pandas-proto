@@ -12,7 +12,7 @@ const AppRouter = () => {
             <Routes>
                 <Route element={<NavigationBar />}>
                     <Route path="/" element={<Home />} />
-                    <Route path="/C-GPT" element={<CGPT />} />
+                    <Route path="/CGPT" element={<CGPT />} />
                     <Route path="/insurer" element={<InsurerDashboard />} />
                 </Route>
             </Routes>

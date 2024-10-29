@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import DatasetBubble from './DatasetBubble'
 
 import { useAuth } from '../../context/AuthContext';
-import { useError } from '../../context/ErrorContext';
 
 const ChatContainer = styled.div.attrs({ className: 'chat-container' })`
     display: flex;
@@ -17,48 +16,10 @@ const ChatContainer = styled.div.attrs({ className: 'chat-container' })`
     padding: 8px;
     height: calc(100% - 16px);
     width: calc(100% - 16px);
-    border: 2px solid white;
+    border: 2px solid black;
     backdrop-filter: blur(3px);
     transition: all 0.3s;
 
-    &::before,
-    &::after {
-        position: absolute;
-        top: -12px;
-        right: -12px;
-        width: 90px;
-        height: 30px;
-        background-color: black;
-        border-radius: 9px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        transition: all 0.3s ease-in-out;
-        font-size: 20px;
-    }
-
-    &::before {
-        content: 'D-GPT';
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    &::after {
-        content: 'Chat';
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    &:hover::before {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    &:hover::after {
-        opacity: 1;
-        transform: translateY(0);
-    }
 `
 
 const MessageContainer = styled.div.attrs({ className: 'message-container' })`
@@ -70,7 +31,7 @@ const MessageContainer = styled.div.attrs({ className: 'message-container' })`
     overflow-x: hidden;
     gap: 12px;
     width: auto;
-    padding: 19px 9px 4px 4px;
+    padding: 4px 4px 4px 4px;
 
     ::-webkit-scrollbar {
         width: 5px;
@@ -91,7 +52,8 @@ const MessageContainer = styled.div.attrs({ className: 'message-container' })`
 const Message = styled.div.attrs({ className: 'message' })`
     padding: 10px;
     margin: 0;
-    background-color: white;
+    background-color: black;
+    color: white;
     border-radius: 10px;
     max-width: 90%;
     height: auto;
@@ -132,7 +94,7 @@ const Textarea = styled.textarea.attrs({ className: 'chatinput-textarea' })`
     flex-grow: 1;
     border: none;
     background: none;
-    color: #fff;
+    color: #000;
     border-radius: 10px;
     outline: none;
     resize: none;
@@ -140,7 +102,7 @@ const Textarea = styled.textarea.attrs({ className: 'chatinput-textarea' })`
     max-height: 150px;
     overflow-y: auto;
     font-size: 20px;
-    font-family: 'Modernist', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     scrollbar-width: none;
 `
 
@@ -149,7 +111,7 @@ const SendButton = styled.button.attrs({ className: 'send-button' })`
     height: 45px;
     width: 45px;
     background-color: none;
-    color: #fff;
+    color: #000;
     border: none;
     border-radius: 5px;
     margin-left: 10px;
@@ -167,7 +129,7 @@ const DotLoader = styled.div.attrs({ className: 'dot-loader' })`
     > div {
         width: 8px;
         height: 8px;
-        background-color: white;
+        background-color: black;
         border-radius: 50%;
         margin: 0 2.5px;
         animation: dot-bounce 1.2s infinite ease-in-out both;
@@ -206,7 +168,7 @@ const Prompt = styled.div.attrs({ className: 'prompt' })`
     padding: 5px 10px;
     border-radius: 7px;
     border: 0.3px solid #555;
-    color: #c8c3c3;
+    color: #000;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
@@ -221,7 +183,7 @@ const Prompt = styled.div.attrs({ className: 'prompt' })`
     }
 
     span {
-        color: #f9f9f9;
+        color: #000;
         font-weight: 600;
         font-size: 20px;
     }
@@ -229,15 +191,12 @@ const Prompt = styled.div.attrs({ className: 'prompt' })`
 
 const ChatBox = () => {
     const { user } = useAuth();
-    const { openErrorModal } = useError();
     const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [prompts, setPrompts] = useState([
-        ['Suggest some datasets to train', 'Suggest some datasets to train a model on predicting S&P 500 Stock Data'],
-        ['Suggest some datasets to build', 'a recommendation system on E-commerce Data'],
-        ['Suggest some datasets to get insights', "on COVID-19's impact on the economy"],
-        ['Suggest some datasets to build', 'a sentiment analysis model on Twitter Data'],
+        ['Walk me through the procedure', 'After an accident'],
+        ['What are the steps to follow', 'When filing a claim'],
     ])
 
     const textareaRef = useRef(null)
@@ -273,10 +232,6 @@ const ChatBox = () => {
 
     const replyMessage = async (userMessage) => {
         if (!user) {
-            openErrorModal({
-                errorHeader: 'Authentication',
-                errorMessage: <>Please sign in to your account, or create one.</>,
-            })
             return;
         }
 
@@ -382,7 +337,7 @@ const ChatBox = () => {
                 <ChatInputContainer>
                     <Textarea
                         ref={textareaRef}
-                        placeholder={'Search your dataset...'}
+                        placeholder={'How can I help you...'}
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
                         onKeyDown={handleKeyDown}

@@ -19,7 +19,8 @@
       "storage": {
         "pandaAccidentRecordsDynamo": {},
         "pandaS3": {},
-        "pandaClaimsDataDynamo": {}
+        "pandaClaimsDataDynamo": {},
+        "pandaPolicyDynamo": {}
       },
       "function": {
         "pandaAccidentRecordsLambda": {
@@ -29,11 +30,16 @@
         "pandaClaimsDataLambda": {
           "deploymentBucketName": "amplify-nuspandasproto-dev-1b896-deployment",
           "s3Key": "amplify-builds/pandaClaimsDataLambda-51336a794a547135772f-build.zip"
+        },
+        "pandaPolicyLambda": {
+          "deploymentBucketName": "amplify-nuspandasproto-dev-1b896-deployment",
+          "s3Key": "amplify-builds/pandaPolicyLambda-707a337168782b6d7546-build.zip"
         }
       },
       "api": {
         "pandaAccidentRecordsApi": {},
-        "pandaClaimsDataApi": {}
+        "pandaClaimsDataApi": {},
+        "pandaPolicyApi": {}
       }
     }
   }

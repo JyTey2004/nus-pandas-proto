@@ -27,6 +27,20 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "API Gateway"
+    },
+    "pandaPolicyApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "pandaPolicyLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
     }
   },
   "auth": {
@@ -93,6 +107,25 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "pandaPolicyLambda": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "pandaPolicyDynamo"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -127,6 +160,22 @@
           "resourceName": "pandaClaimsDataLambda"
         }
       ]
+    },
+    "AMPLIFY_function_pandaPolicyLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pandaPolicyLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_pandaPolicyLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "pandaPolicyLambda"
+        }
+      ]
     }
   },
   "storage": {
@@ -135,6 +184,10 @@
       "service": "DynamoDB"
     },
     "pandaClaimsDataDynamo": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "pandaPolicyDynamo": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     },

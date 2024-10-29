@@ -23,14 +23,48 @@ const Container = styled.div`
         font-weight: 400;
         z-index: 2;
         margin-top: 10px;
-    }   
+    }
 
-    .home-page-button-container {
-        position: relative;
+    .container {
         display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
         gap: 20px;
-        margin-top: 20px;
-        width: 40vw;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+
+    .inner-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+        height: 100%;
+        z-index: 2;
+
+        h4 {
+            font-weight: 600;
+            margin: 0;
+            font-size: 24px;
+        }
+    }
+
+    .dashboard-accident-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: auto;
+        height: 70vh;
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        overflow-y: auto;
     }
 `;
 

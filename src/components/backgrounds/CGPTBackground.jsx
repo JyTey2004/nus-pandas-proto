@@ -1,16 +1,15 @@
 // DGPTBackground.jsx
 import React from 'react';
 import styled from 'styled-components';
-import Footer from '../footer/Footer';
 
 // Styled component for the background container
 const Background = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000; /* Change to desired background color */
+  width: 100vw;
+  height: 100vh;
+  background-color: #e4e5f1; 
   overflow: hidden;
   z-index: -1; /* Ensure it stays behind other content */
 `;
@@ -37,32 +36,31 @@ const ChildrenContainer = styled.div`
 
 const CGPTBackground = ({ children }) => {
 
-    // Fixed positions for aesthetic arrangement
-    const positions = [
-        { top: 10, left: 15, size: 100, opacity: 0.1, rotate: 15 },
-        { top: 25, left: 30, size: 150, opacity: 0.12, rotate: -10 },
-        { top: 40, left: 50, size: 200, opacity: 0.08, rotate: 45 },
-        { top: 60, left: 75, size: 120, opacity: 0.15, rotate: -25 },
-        { top: 75, left: 25, size: 250, opacity: 0.18, rotate: 65 },
-        { top: 85, left: 60, size: 200, opacity: 0.1, rotate: 30 },
-        { top: 35, left: 85, size: 90, opacity: 0.13, rotate: -35 },
-        { top: 55, left: 40, size: 100, opacity: 0.2, rotate: 60 },
-        { top: 15, left: 70, size: 110, opacity: 0.12, rotate: -45 },
-        { top: 5, left: 45, size: 130, opacity: 0.09, rotate: 20 },
-        { top: 70, left: 10, size: 180, opacity: 0.15, rotate: -15 },
-        { top: 45, left: 95, size: 150, opacity: 0.1, rotate: 75 },
-        { top: 80, left: 85, size: 150, opacity: 0.2, rotate: 125 },
-        { top: 40, left: 15, size: 120, opacity: 0.18, rotate: -40 },
-    ];
+  // Fixed positions for aesthetic arrangement
+  const positions = [
+    { top: 10, left: 15, size: 100, opacity: 0.1, rotate: 15 },
+    { top: 25, left: 30, size: 150, opacity: 0.12, rotate: -10 },
+    { top: 40, left: 50, size: 200, opacity: 0.08, rotate: 45 },
+    { top: 60, left: 75, size: 120, opacity: 0.15, rotate: -25 },
+    { top: 75, left: 25, size: 250, opacity: 0.18, rotate: 65 },
+    { top: 85, left: 60, size: 200, opacity: 0.1, rotate: 30 },
+    { top: 35, left: 85, size: 90, opacity: 0.13, rotate: -35 },
+    { top: 55, left: 40, size: 100, opacity: 0.2, rotate: 60 },
+    { top: 15, left: 70, size: 110, opacity: 0.12, rotate: -45 },
+    { top: 5, left: 45, size: 130, opacity: 0.09, rotate: 20 },
+    { top: 70, left: 10, size: 180, opacity: 0.15, rotate: -15 },
+    { top: 45, left: 95, size: 150, opacity: 0.1, rotate: 75 },
+    { top: 80, left: 85, size: 150, opacity: 0.2, rotate: 125 },
+    { top: 40, left: 15, size: 120, opacity: 0.18, rotate: -40 },
+  ];
 
-    return (
-        <div>=
-            <ChildrenContainer>
-                {children}
-            </ChildrenContainer>
-            <Footer />
-        </div>
-    );
+  return (
+    <Background>
+      <ChildrenContainer>
+        {children}
+      </ChildrenContainer>
+    </Background>
+  );
 };
 
 export default CGPTBackground;
